@@ -1,0 +1,23 @@
+---
+
+spring:
+  profiles:
+    active: local
+    group:
+      local:
+      - common
+      - local
+
+...
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: common
+
+  application:
+    name: learing-guava
+
+...
