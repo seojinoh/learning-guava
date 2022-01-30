@@ -78,4 +78,45 @@ public class PreconditionsTestController {
 		}
 	}
 
+	/**
+	 * Preconditions.checkElementIndex
+	 * array, list 또는 string에서 해당 인덱스의 유효성을 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
+	 */
+	@GetMapping("/checkElementIndex")
+	public void checkElementIndex() {
+		int[] indexArray = {0, 1};
+		int[] arrayToCheck = {0};
+
+		for(int index : indexArray) {
+			try {
+				Preconditions.checkElementIndex(index, arrayToCheck.length);
+				logger.info("{} ::: {} < {}", "인자 검사 성공", index, arrayToCheck.length);
+			} catch (IndexOutOfBoundsException e) {
+				logger.error("{} ::: {} < {}", "인자 검사 실패", index, arrayToCheck.length);
+			}
+		}
+	}
+
+	/**
+	 * Preconditions.checkElementIndex
+	 * IndexOutOfBoundsException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 */
+	@GetMapping("/checkElementIndexWithMessage")
+	public void checkElementIndexWithMessage() {
+		int[] indexArray = {0, 1};
+		int[] arrayToCheck = {0};
+
+		String message = "index < array|list|string length";
+
+		for(int index : indexArray) {
+			try {
+				Preconditions.checkElementIndex(index, arrayToCheck.length, message);
+				logger.info("{} ::: {} < {}", "인자 검사 성공", index, arrayToCheck.length);
+			} catch (IndexOutOfBoundsException e) {
+				logger.error("{} ::: {}", "인자 검사 실패", e.getMessage());
+			}
+		}
+	}
+
 }
