@@ -119,4 +119,63 @@ public class PreconditionsTestController {
 		}
 	}
 
+	/**
+	 * Preconditions.checkNotNull
+	 * 메서드에 전달된 매개변수의 null 여부를 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, NullPointerException을 발생시킵니다.
+	 */
+	@GetMapping("/checkNotNull")
+	public void checkNotNull() {
+		String[] stringArray = {"Hello, World!", null};
+
+		for(String string : stringArray) {
+			try {
+				Preconditions.checkNotNull(string);
+				logger.info("{} ::: {} is not null", "인자 검사 성공", string);
+			} catch (NullPointerException e) {
+				logger.error("{} ::: {} is null", "인자 검사 실패", string);
+			}
+		}
+	}
+
+	/**
+	 * Preconditions.checkNotNull
+	 * NullPointerException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 */
+	@GetMapping("/checkNotNullWithMessage")
+	public void checkNotNullWithMessage() {
+		String[] stringArray = {"Hello, World!", null};
+
+		String message = "object is null";
+
+		for(String string : stringArray) {
+			try {
+				Preconditions.checkNotNull(string, message);
+				logger.info("{} ::: {} is not null", "인자 검사 성공", string);
+			} catch (NullPointerException e) {
+				logger.error("{} ::: {}", "인자 검사 실패", e.getMessage());
+			}
+		}
+	}
+
+	/**
+	 * Preconditions.checkNotNull
+	 * NullPointerException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다.
+	 */
+	@GetMapping("/checkNotNullWithTemplateMessage")
+	public void checkNotNullWithTemplateMessage() {
+		String[] stringArray = {"Hello, World!", null};
+
+		String message = "%s is null";
+
+		for(String string : stringArray) {
+			try {
+				Preconditions.checkNotNull(string, message, string);
+				logger.info("{} ::: {} is not null", "인자 검사 성공", string);
+			} catch (NullPointerException e) {
+				logger.error("{} ::: {}", "인자 검사 실패", e.getMessage());
+			}
+		}
+	}
+
 }
