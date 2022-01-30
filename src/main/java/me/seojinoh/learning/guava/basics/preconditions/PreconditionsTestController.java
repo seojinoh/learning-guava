@@ -219,4 +219,25 @@ public class PreconditionsTestController {
 		}
 	}
 
+	/**
+	 * Preconditions.checkPositionIndexes
+	 * array, list 또는 string에서 해당 인덱스들의 유효성을 검사하는데 유용합니다. (0 <= start <= end <= array|list|string length)
+	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
+	 */
+	@GetMapping("/checkPositionIndexes")
+	public void checkPositionIndexes() {
+		int start = 0;
+		int[] endArray = {1, 2};
+		int[] arrayToCheck = {0};
+
+		for(int end : endArray) {
+			try {
+				Preconditions.checkPositionIndexes(start, end, arrayToCheck.length);
+				logger.info("{} ::: {} <= {} <= {}", "인자 검사 성공", start, end, arrayToCheck.length);
+			} catch (IndexOutOfBoundsException e) {
+				logger.error("{} ::: {} <= {} <= {}", "인자 검사 실패", start, end, arrayToCheck.length);
+			}
+		}
+	}
+
 }
