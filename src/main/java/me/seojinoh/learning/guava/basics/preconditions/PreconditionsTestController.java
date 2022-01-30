@@ -1,5 +1,7 @@
 package me.seojinoh.learning.guava.basics.preconditions;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -236,6 +238,68 @@ public class PreconditionsTestController {
 				logger.info("{} ::: {} <= {} <= {}", "인자 검사 성공", start, end, arrayToCheck.length);
 			} catch (IndexOutOfBoundsException e) {
 				logger.error("{} ::: {} <= {} <= {}", "인자 검사 실패", start, end, arrayToCheck.length);
+			}
+		}
+	}
+
+	/**
+	 * Preconditions.checkState
+	 * object 상태의 유효성을 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, IllegalStateException을 발생시킵니다.
+	 */
+	@GetMapping("/checkState")
+	public void checkState() {
+		int[] validStateArray = {-1, 0, 1};
+		int[] stateToCheck = {1, 2};
+
+		for(int state : stateToCheck) {
+			try {
+				Preconditions.checkState(Arrays.binarySearch(validStateArray, state) > 0);
+				logger.info("{} ::: {} in {}", "인자 검사 성공", state, Arrays.toString(validStateArray));
+			} catch (IllegalStateException e) {
+				logger.error("{} ::: {} in {}", "인자 검사 실패", state, Arrays.toString(validStateArray));
+			}
+		}
+	}
+
+	/**
+	 * Preconditions.checkState
+	 * IllegalStateException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 */
+	@GetMapping("/checkStateWithMessage")
+	public void checkStateWithMessage() {
+		int[] validStateArray = {-1, 0, 1};
+		int[] stateToCheck = {1, 2};
+
+		String message = "state in validStateArray";
+
+		for(int state : stateToCheck) {
+			try {
+				Preconditions.checkState(Arrays.binarySearch(validStateArray, state) > 0, message);
+				logger.info("{} ::: {} in {}", "인자 검사 성공", state, Arrays.toString(validStateArray));
+			} catch (IllegalStateException e) {
+				logger.error("{} ::: {}", "인자 검사 실패", e.getMessage());
+			}
+		}
+	}
+
+	/**
+	 * Preconditions.checkState
+	 * IllegalStateException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다.
+	 */
+	@GetMapping("/checkStateWithTemplateMessage")
+	public void checkStateWithTemplateMessage() {
+		int[] validStateArray = {-1, 0, 1};
+		int[] stateToCheck = {1, 2};
+
+		String message = "%s in %s";
+
+		for(int state : stateToCheck) {
+			try {
+				Preconditions.checkState(Arrays.binarySearch(validStateArray, state) > 0, message, state, Arrays.toString(validStateArray));
+				logger.info("{} ::: {} in {}", "인자 검사 성공", state, Arrays.toString(validStateArray));
+			} catch (IllegalStateException e) {
+				logger.error("{} ::: {}", "인자 검사 실패", e.getMessage());
 			}
 		}
 	}
