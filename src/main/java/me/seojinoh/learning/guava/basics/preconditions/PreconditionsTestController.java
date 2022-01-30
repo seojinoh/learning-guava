@@ -80,7 +80,7 @@ public class PreconditionsTestController {
 
 	/**
 	 * Preconditions.checkElementIndex
-	 * array, list 또는 string에서 해당 인덱스의 유효성을 검사하는데 유용합니다.
+	 * array, list 또는 string에서 해당 인덱스의 유효성을 검사하는데 유용합니다. (index < array|list|string length)
 	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
 	 */
 	@GetMapping("/checkElementIndex")
