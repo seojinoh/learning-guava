@@ -19,9 +19,11 @@ public class PreconditionsTestController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/**
-	 * Preconditions.checkArgument
+	 * Preconditions.checkArgument(boolean expression)
+	 * <pre>
 	 * 메서드에 전달된 매개변수의 유효성을 검사하는데 유용합니다.
 	 * boolean 컨디션이 false이면, IllegalArgumentException을 발생시킵니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkArgument")
 	public void checkArgument() {
@@ -39,8 +41,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkArgument
-	 * IllegalArgumentException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 * Preconditions.checkArgument(boolean expression, Object errorMessage)
+	 * <pre>
+	 * 메서드에 전달된 매개변수의 유효성을 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, IllegalArgumentException을 발생시킵니다.
+	 * IllegalArgumentException 발생 시 전달될 메시지를 포함할 수 있습니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkArgumentWithMessage")
 	public void checkArgumentWithMessage() {
@@ -60,8 +66,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkArgument
-	 * IllegalArgumentException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다.
+	 * Preconditions.checkArgument(boolean expression, Object errorMessageTemplate, Object... errorMessageArgs)
+	 * <pre>
+	 * 메서드에 전달된 매개변수의 유효성을 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, IllegalArgumentException을 발생시킵니다.
+	 * IllegalArgumentException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다. 템플릿의 %s를 errorMessageArgs로 차례대로 치환합니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkArgumentWithTemplateMessage")
 	public void checkArgumentWithTemplateMessage() {
@@ -81,9 +91,11 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkElementIndex
-	 * array, list 또는 string에서 해당 인덱스의 유효성을 검사하는데 유용합니다. (index < array|list|string length)
+	 * Preconditions.checkElementIndex(int index, int size)
+	 * <pre>
+	 * array, list 또는 string에서 해당 인덱스의 유효성(요소 조회 시)을 검사하는데 유용합니다. (index < array|list|string length, index는 0부터 시작)
 	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkElementIndex")
 	public void checkElementIndex() {
@@ -101,8 +113,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkElementIndex
+	 * Preconditions.checkElementIndex(int index, int size, String desc)
+	 * <pre>
+	 * array, list 또는 string에서 해당 인덱스의 유효성(요소 조회 시)을 검사하는데 유용합니다. (index < array|list|string length, index는 0부터 시작)
+	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
 	 * IndexOutOfBoundsException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkElementIndexWithMessage")
 	public void checkElementIndexWithMessage() {
@@ -122,9 +138,11 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkNotNull
+	 * Preconditions.checkNotNull(T reference)
+	 * <pre>
 	 * 메서드에 전달된 매개변수의 null 여부를 검사하는데 유용합니다.
 	 * boolean 컨디션이 false이면, NullPointerException을 발생시킵니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkNotNull")
 	public void checkNotNull() {
@@ -141,8 +159,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkNotNull
+	 * Preconditions.checkNotNull(T reference, Object errorMessage)
+	 * <pre>
+	 * 메서드에 전달된 매개변수의 null 여부를 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, NullPointerException을 발생시킵니다.
 	 * NullPointerException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkNotNullWithMessage")
 	public void checkNotNullWithMessage() {
@@ -161,8 +183,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkNotNull
-	 * NullPointerException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다.
+	 * Preconditions.checkNotNull(T reference, Object errorMessageTemplate, Object... errorMessageArgs)
+	 * <pre>
+	 * 메서드에 전달된 매개변수의 null 여부를 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, NullPointerException을 발생시킵니다.
+	 * NullPointerException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다. 템플릿의 %s를 errorMessageArgs로 차례대로 치환합니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkNotNullWithTemplateMessage")
 	public void checkNotNullWithTemplateMessage() {
@@ -181,9 +207,11 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkPositionIndex
-	 * array, list 또는 string에서 해당 인덱스의 유효성을 검사하는데 유용합니다. (index <= array|list|string length)
+	 * Preconditions.checkPositionIndex(int index, int size)
+	 * <pre>
+	 * array, list 또는 string에서 해당 인덱스의 유효성(새 요소 삽입 시)을 검사하는데 유용합니다. (index <= array|list|string length, index는 0부터 시작)
 	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkPositionIndex")
 	public void checkPositionIndex() {
@@ -201,8 +229,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkPositionIndex
+	 * Preconditions.checkPositionIndex(int index, int size, Strig desc)
+	 * <pre>
+	 * array, list 또는 string에서 해당 인덱스의 유효성(새 요소 삽입 시)을 검사하는데 유용합니다. (index <= array|list|string length, index는 0부터 시작)
+	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
 	 * IndexOutOfBoundsException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkPositionIndexWithMessage")
 	public void checkPositionIndexWithMessage() {
@@ -222,9 +254,11 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkPositionIndexes
-	 * array, list 또는 string에서 해당 인덱스들의 유효성을 검사하는데 유용합니다. (0 <= start <= end <= array|list|string length)
+	 * Preconditions.checkPositionIndexes(int start, int end, int size)
+	 * <pre>
+	 * array, list 또는 string에서 해당 인덱스들(start, end)의 유효성(새 요소 삽입 시)을 검사하는데 유용합니다.  (0 <= start <= end <= array|list|string length, index는 0부터 시작)
 	 * boolean 컨디션이 false이면, IndexOutOfBoundsException을 발생시킵니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkPositionIndexes")
 	public void checkPositionIndexes() {
@@ -243,9 +277,11 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkState
-	 * object 상태의 유효성을 검사하는데 유용합니다.
+	 * Preconditions.checkState(boolean expression)
+	 * <pre>
+	 * 호출하는 인스턴스의 상태를 포함하지만 호출 메서드에 대한 매개변수는 포함하지 않는 식의 유효성을 검사하는데 유용합니다.
 	 * boolean 컨디션이 false이면, IllegalStateException을 발생시킵니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkState")
 	public void checkState() {
@@ -263,8 +299,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkState
+	 * Preconditions.checkState(boolean expression, Object errorMessage)
+	 * <pre>
+	 * 호출하는 인스턴스의 상태를 포함하지만 호출 메서드에 대한 매개변수는 포함하지 않는 식의 유효성을 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, IllegalStateException을 발생시킵니다.
 	 * IllegalStateException 발생 시 전달될 메시지를 추가할 수 있습니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkStateWithMessage")
 	public void checkStateWithMessage() {
@@ -284,8 +324,12 @@ public class PreconditionsTestController {
 	}
 
 	/**
-	 * Preconditions.checkState
-	 * IllegalStateException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다.
+	 * Preconditions.checkState(boolean expression, Object errorMessage, Object... errorMessageArgs)
+	 * <pre>
+	 * 호출하는 인스턴스의 상태를 포함하지만 호출 메서드에 대한 매개변수는 포함하지 않는 식의 유효성을 검사하는데 유용합니다.
+	 * boolean 컨디션이 false이면, IllegalStateException을 발생시킵니다.
+	 * IllegalStateException 발생 시 전달될 메시지를 템플릿 형태로도 추가할 수 있습니다. 템플릿의 %s를 errorMessageArgs로 차례대로 치환합니다.
+	 * </pre>
 	 */
 	@GetMapping("/checkStateWithTemplateMessage")
 	public void checkStateWithTemplateMessage() {
