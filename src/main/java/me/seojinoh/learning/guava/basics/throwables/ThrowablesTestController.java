@@ -78,4 +78,47 @@ public class ThrowablesTestController {
 		}
 	}
 
+	/**
+	 * Throwables.propagateIfInstanceOf(Throwable throwable, Class<X> declaredType)
+	 * <pre>
+	 * declaredType의 인스턴스이면, 해당 Throwable을 그대로 전달합니다.
+	 * </pre>
+	 * @deprecated 대신, Throwables.throwIfInstanceOf(Throwable throwable, Class<X> declaredType)를 사용하세요. (null을 허용하지 않음)
+	 */
+	@GetMapping("/propagateIfInstanceOf")
+	public void propagateIfInstanceOf() {
+		try {
+			try {
+				throwablesTestService.methodThatThrowThrowable();
+			} catch (Throwable t) {
+				Throwables.propagateIfInstanceOf(t, Error.class);
+				Throwables.propagateIfInstanceOf(t, Exception.class);
+				throw new RuntimeException(t);
+			}
+		} catch (Error | Exception e) {
+			logger.error("{} ::: {}", "Catch", e.getMessage());
+		}
+	}
+
+	/**
+	 * Throwables.throwIfInstanceOf(Throwable throwable, Class<X> declaredType)
+	 * <pre>
+	 * declaredType의 인스턴스이면, 해당 Throwable을 그대로 전달합니다. (null을 허용하지 않음)
+	 * </pre>
+	 */
+	@GetMapping("/throwIfInstanceOf")
+	public void throwIfInstanceOf() {
+		try {
+			try {
+				throwablesTestService.methodThatThrowThrowable();
+			} catch (Throwable t) {
+				Throwables.throwIfInstanceOf(t, Error.class);
+				Throwables.throwIfInstanceOf(t, Exception.class);
+				throw new RuntimeException(t);
+			}
+		} catch (Error | Exception e) {
+			logger.error("{} ::: {}", "Catch", e.getMessage());
+		}
+	}
+
 }
