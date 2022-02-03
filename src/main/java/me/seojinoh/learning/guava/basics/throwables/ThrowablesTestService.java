@@ -23,4 +23,8 @@ public class ThrowablesTestService {
 			throw new Exception("Hello, Exception!");
 	}
 
+	void methodThatThrowThrowables() throws Throwable {
+		throw new RuntimeException("Depth 3 Throwable!", new Exception("Depth 2 Throwable!", new Error("Depth 1 Throwable!", new Throwable("Depth 0 Throwable!"))));
+	}
+
 }
