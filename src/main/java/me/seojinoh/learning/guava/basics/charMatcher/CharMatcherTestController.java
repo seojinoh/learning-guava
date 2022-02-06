@@ -49,7 +49,10 @@ public class CharMatcherTestController {
 
 		logger.info("Retain ASCII ::: {}", CharMatcher.ascii().retainFrom(input));
 
-		logger.info("Retain 0-9, a-z ::: {}", CharMatcher.inRange('0', '9').or(CharMatcher.inRange('a', 'z')).retainFrom(input));
+		CharMatcher numberMatcher = CharMatcher.inRange('0', '9');
+		CharMatcher lowerCaseMatcher = CharMatcher.inRange('a', 'z');
+
+		logger.info("Retain 0-9, a-z ::: {}", numberMatcher.or(lowerCaseMatcher).retainFrom(input));
 	}
 
 }
