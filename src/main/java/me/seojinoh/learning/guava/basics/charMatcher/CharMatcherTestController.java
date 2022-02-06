@@ -37,4 +37,19 @@ public class CharMatcherTestController {
 		logger.info("Retain Digit ::: {}", charMatcher.retainFrom(input));
 	}
 
+	/**
+	 * String에서 ASCII 이외를 제거 (CharMatcher.retainFrom(CharSequence sequence) 활용)
+	 * <pre>
+	 * CharMatcher 클래스는 Java char value의 true or false를 결정하며, retainFrom 메서드는 문자 시퀀스의 일치하는 모든 BMP 문자를 포함한 문자열을 순서대로 반환합니다.
+	 * </pre>
+	 */
+	@GetMapping("/removeNonAsciiCharacters")
+	public void removeNonAsciiCharacters() {
+		String input = "Hello, World! 12345 一二三四五";
+
+		logger.info("Retain ASCII ::: {}", CharMatcher.ascii().retainFrom(input));
+
+		logger.info("Retain 0-9, a-z ::: {}", CharMatcher.inRange('0', '9').or(CharMatcher.inRange('a', 'z')).retainFrom(input));
+	}
+
 }
