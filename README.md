@@ -20,7 +20,7 @@
 
 Maven 사용:
 
-```
+```pom.xml
 <dependency>
 	<groupId>com.google.guava</groupId>
 	<artifactId>guava</artifactId>
