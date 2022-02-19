@@ -1,4 +1,4 @@
-# learning-guava
+# Learning Guava
 
 ## 프로젝트 개요
 
