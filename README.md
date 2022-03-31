@@ -1,22 +1,22 @@
 # Learning Guava
 
-## 프로젝트 개요
+## Project Overview
 
 `Guava` 라이브러리 개인 학습을 위한 프로젝트 (`Guava`: Java 용 Google Core 라이브러리)
 
-### 참조
+### References
 
 - [Guava | GitHub](https://github.com/google/guava "Guava")
 - [Guava Guide | Baeldung](https://www.baeldung.com/guava-guide "Guava Guide")
 
-### 버전 정보
+### Version Info
 
 - Java: 1.8
 - Spring Boot: 2.5.9 (Spring: 5.3.15)
 - Maven: 3.6.1
 - Guava: 31.0.1-jre
 
-### Guava 추가
+### Add Guava
 
 Maven 사용:
 
